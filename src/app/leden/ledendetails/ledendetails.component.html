@@ -1,0 +1,84 @@
+Ledendetails
+<form #lidForm="ngForm" (ngSubmit)="onSubmit(lidForm)">
+
+  <div class="form-group">
+    <label>Id</label>
+    <input class="form-control" name="id" #id="ngModel"
+	[(ngModel)]="ledenService.selectedLid.id" placeholder="id">
+  </div>
+  
+  <div class="form-group">
+    <label>Naam</label>
+    <input class="form-control" name="naam" #naam="ngModel"
+	[(ngModel)]="ledenService.selectedLid.naam" placeholder="naam" required>
+  </div>
+
+  <div class="form-group">
+    <label>geboortedatum</label>
+    <input class="form-control" type="date" name="gebdat" #gebdat="ngModel" 
+	[(ngModel)]="ledenService.selectedLid.gebdat" placeholder="gebdat">
+  </div>
+  
+  <div class="form-group">
+    <label>geslacht</label>
+    <input class="form-control" name="geslacht" #geslacht="ngModel" 
+	[(ngModel)]="ledenService.selectedLid.geslacht" placeholder="geslacht">
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <input class="form-control" name="email" #email="ngModel" 
+	[(ngModel)]="ledenService.selectedLid.email" placeholder="email">
+  </div>
+  
+  <div class="form-group">
+    <label>factuurEmail</label>
+    <input class="form-control" name="factuurEmail" #factuurEmail="ngModel" 
+	[(ngModel)]="ledenService.selectedLid.factuurEmail" placeholder="factuurEmail">
+  </div>
+
+  <div class="form-group">
+    <label>straat</label>
+    <input class="form-control" name="straat" #straat="ngModel" 
+	[(ngModel)]="ledenService.selectedLid.straat" placeholder="straat">
+  </div>
+
+  <div class="form-group">
+    <label>huisnummer</label>
+    <input class="form-control" name="huisnummer" #huisnummer="ngModel" 
+	  [(ngModel)]="ledenService.selectedLid.huisnummer" placeholder="huisnummer">
+  </div>
+
+  <div class="form-group">
+    <label>postcode</label>
+    <input class="form-control" name="postcode" #postcode="ngModel" 
+	[(ngModel)]="ledenService.selectedLid.postcode" placeholder="postcode">
+  </div>
+
+  <div class="form-group">
+    <label>woonplaats</label>
+    <input class="form-control" name="woonplaats" #woonplaats="ngModel" 
+	[(ngModel)]="ledenService.selectedLid.woonplaats" placeholder="woonplaats">
+  </div>
+
+  <div class="form-group">
+    <label>mobiel</label>
+    <input class="form-control" name="mobiel" #mobiel="ngModel" 
+	[(ngModel)]="ledenService.selectedLid.mobiel" placeholder="mobiel">
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-default" type="submit" [disabled]="!lidForm.valid">
+      <i class="fa fa-floppy-o"></i>
+      Submit
+    </button>
+    <button class="btn btn-default" type="button" (click)="resetForm(lidForm)">
+      <i class="fa fa-repeat"></i>
+      Reset
+    </button>
+  </div>
+
+
+
+</form>
+
