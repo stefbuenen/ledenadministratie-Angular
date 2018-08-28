@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { LedenService } from '../../shared/service/leden.service';
 import { NgForm } from '@angular/forms';
+import { GlobalService } from '../../shared/service/globalService';
 
 
 @Component({
   selector: 'app-ledendetails',
   templateUrl: './ledendetails.component.html',
   styleUrls: ['./ledendetails.component.css']
+
 })
 export class LedendetailsComponent implements OnInit {
 
-  constructor(public ledenService: LedenService) {   }
+  constructor(public ledenService: LedenService, private globalService: GlobalService) { }
 
   ngOnInit() {
     this.resetForm();
@@ -26,6 +28,7 @@ export class LedendetailsComponent implements OnInit {
   }
 
   resetForm(lidForm?: NgForm) {
+    this.globalService.globalVar= this.globalService.globalVar+1;
     if (lidForm != null) {
       lidForm.reset();
     }
