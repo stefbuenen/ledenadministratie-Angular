@@ -38,6 +38,7 @@ export class LedenService {
    findById(id: number): Observable<Lid> {
     const url = `${this.ledenUrl}/${id}`;
     return this.httpClient.get<Lid>(url).pipe(
+      
         tap(_ => console.log(`fetched lid id=${id}`)),
         catchError(this.handleError<Lid>(`findById id=${id}`))
     );

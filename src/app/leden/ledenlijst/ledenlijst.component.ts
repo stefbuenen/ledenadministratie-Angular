@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LedenService } from '../../shared/service/leden.service';
 import { Lid } from '../../shared/domain/lid.model';
-import { Alert } from 'selenium-webdriver';
 import { HttpErrorResponse } from '@angular/common/http';
+import { GlobalService } from '../../shared/service/globalService';
 
 @Component({
   selector: 'app-ledenlijst',
@@ -12,21 +12,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LedenlijstComponent implements OnInit {
   ledenLijst: Lid [];
 
-  constructor(private ledenService: LedenService) { }
+  constructor(private ledenService: LedenService, private globalService: GlobalService) { }
 
   ngOnInit() {
     this.getLeden();
     }
-
 
   getLeden() : void {
     this.ledenService.findAll()
       .subscribe(leden => this.ledenLijst = leden);
   }
 
-  onEdit(lid: Lid){
-    // this.lidService.selectedLid = lid;  // tegelijkertijd in tabel en in detailformulier updaten
-   this.ledenService.selectedLid = Object.assign({}, lid); // een kopie updaten, zodat de lijst niet DIrecT  wordt bijgewerkt
+  onEdit(lid: Lid) {
+  // this.lidService.selectedLid = lid;  // tegelijkertijd in tabel en in detailformulier updaten
+   this.ledenService.selectedLid = Object.assign({}, lid); // een kopie updaten, zodat de lijst niet Direct  wordt bijgewerkt
   }
 
   onRemove(key: Lid){
@@ -41,7 +40,7 @@ export class LedenlijstComponent implements OnInit {
           
         (error: HttpErrorResponse)  => {
           if(error.status == 404) {
-            alert("Was al verwijderd" + error.message);
+            alert(error.status + " lid " + key.naam + " was al uit de database verwijderd.\n" + error.message);
             var index = this.ledenLijst.indexOf(key);
             if(index>=0)
               this.ledenLijst.splice(index, 1);
@@ -51,9 +50,7 @@ export class LedenlijstComponent implements OnInit {
           }
         }
       );
-      
-      
-      }
+    }
   }
 
 
